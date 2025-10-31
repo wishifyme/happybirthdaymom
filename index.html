@@ -58,8 +58,14 @@
                             <i class="fa-regular fa-envelope"></i>
                         </div>
                     </button>
-
+                    <button id="btn__music">
+        <div class="music-icon">
+            Play Music
+            <i class="fa-solid fa-music"></i>
+        </div>
+    </button>
                 </div>
+                
             </div>
             <div class="right">
                 <div class="box__account">
@@ -286,6 +292,31 @@
     close.addEventListener('click', function () {
         boxmail.classList.remove('active')
     })
+    const musicBtn = document.getElementById('btn__music');
+const bgMusic = document.getElementById('bgmusic');
+let musicPlaying = false;
+
+musicBtn.onclick = () => {
+  if (!musicPlaying) {
+    bgMusic.play();
+    musicBtn.querySelector('i').className = "fa-solid fa-pause";
+    musicBtn.querySelector('.music-icon').firstChild.nodeValue = "Pause Music ";
+    musicPlaying = true;
+  } else {
+    bgMusic.pause();
+    musicBtn.querySelector('i').className = "fa-solid fa-music";
+    musicBtn.querySelector('.music-icon').firstChild.nodeValue = "Play Music ";
+    musicPlaying = false;
+  }
+};
+// Auto revert button if music ends
+bgMusic.onended = () => {
+  musicBtn.querySelector('i').className = "fa-solid fa-music";
+  musicBtn.querySelector('.music-icon').firstChild.nodeValue = "Play Music ";
+  musicPlaying = false;
+};
+
 </script>
+
 
 </html>
